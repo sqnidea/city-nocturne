@@ -1,328 +1,502 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8895675153868747"
      crossorigin="anonymous"></script>
-    <title>Nightrise Audio: City Nocturne</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nocturne Focus: Dynamic Ambient Mixer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 
+      AdSense Script Placeholder:
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-################" crossorigin="anonymous"></script>
+    -->
     <style>
         body {
-            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+            background: radial-gradient(circle at top right, #1e1b4b 0%, #020617 100%);
             color: #e2e8f0;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
         }
         .glow-button {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
-        }
-        .glow-button:hover {
-            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
-            transform: translateY(-1px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .glass {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         input[type=range] {
-            accent-color: #6366f1;
+            accent-color: #818cf8;
+            height: 6px;
         }
         .visualizer-bar {
-            transition: height 0.05s ease;
+            transition: height 0.1s ease;
         }
-        /* Style for the Ad Container */
-        .ad-container {
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            min-height: 90px;
+        .track-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.03);
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            font-size: 0.75rem;
-            color: #475569;
+            min-height: 70px;
+        }
+        @media (min-width: 640px) {
+            .track-card { min-height: 85px; }
+        }
+        .track-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .track-card.active {
+            background: rgba(99, 102, 241, 0.25);
+            border-color: rgba(99, 102, 241, 0.6);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+        }
+        .section-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: #818cf8;
+            margin-bottom: 1rem;
+            display: block;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 gap-8">
-
-    <!-- Top Ad Placeholder (Standard Banner 728x90) -->
-    <div class="glass max-w-4xl w-full p-2 rounded-xl ad-container">
-        <!-- Paste your AdSense/Media.net script here -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8895675153868747"
+<body class="min-h-screen flex flex-col items-center py-8 px-4 gap-8">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8895675153868747"
      crossorigin="anonymous"></script>
-        <!-- placeholder1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-8895675153868747"
-             data-ad-slot="3245168838"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <!--<span>Advertisement Placeholder</span> -->
-    </div>
+<!-- Responsive Ads -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8895675153868747"
+     data-ad-slot="5543273667"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+    <!-- Main Content Area -->
+    <div class="w-full max-w-5xl flex flex-col items-center gap-8">
+        
+        <!-- CENTER: MAIN APP -->
+        <main class="glass w-full rounded-[2.5rem] md:rounded-[3.5rem] p-6 sm:p-8 md:p-12 shadow-2xl space-y-8 md:space-y-10">
+            <header class="text-center space-y-1">
+                <h1 class="text-3xl md:text-5xl font-black tracking-tighter text-white">Nocturne Focus</h1>
+                <p class="text-indigo-300/60 text-sm md:text-base font-medium italic">High-Rise Ambience & Focus Synthesis</p>
+            </header>
 
-    <div class="glass max-w-md w-full rounded-3xl p-8 space-y-8">
-        <div class="text-center">
-            <h1 class="text-3xl font-bold tracking-tight text-indigo-300">City Nocturne</h1>
-            <p class="text-slate-400 text-sm mt-2">High-Rise Ambience Generator</p>
-        </div>
-
-        <!-- Visualizer -->
-        <div id="visualizer" class="h-24 flex items-end justify-center gap-1 overflow-hidden rounded-xl bg-slate-900/50 p-4">
-            <!-- Bars generated via JS -->
-        </div>
-
-        <!-- Controls -->
-        <div class="space-y-6">
-            <div class="flex items-center justify-between">
-                <button id="playBtn" class="glow-button w-full py-4 bg-indigo-600 hover:bg-indigo-500 rounded-2xl font-semibold flex items-center justify-center gap-3">
-                    <span id="playIcon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                    </span>
-                    <span id="playText">Enter the Night</span>
-                </button>
+            <!-- Main Visualizer -->
+            <div id="visualizer" class="h-20 md:h-28 flex items-end justify-center gap-1 md:gap-1.5 overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-black/40 p-4 md:p-6 border border-white/5">
+                <!-- Bars generated via JS -->
             </div>
 
-            <div class="space-y-4">
-                <div class="space-y-2">
-                    <div class="flex justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
-                        <span>Street Traffic Hum</span>
-                        <span id="trafficVal">60%</span>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                
+                <!-- Left Panel: DYNAMIC CONTROLS -->
+                <div class="lg:col-span-5 xl:col-span-4 space-y-6 md:space-y-8">
+                    <div class="glass p-5 md:p-0 md:bg-transparent md:border-none rounded-3xl">
+                        <span id="dynamicSectionLabel" class="section-label">High-Rise Environment</span>
+                        <div class="space-y-6">
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-[11px] md:text-xs font-bold text-slate-400">
+                                    <span id="param1Label">City Traffic Hum</span>
+                                    <span id="param1Val">30%</span>
+                                </div>
+                                <input type="range" id="param1Slider" min="0" max="1" step="0.01" value="0.3" class="w-full bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-[11px] md:text-xs font-bold text-slate-400">
+                                    <span id="param2Label">Condo Window Wind</span>
+                                    <span id="param2Val">20%</span>
+                                </div>
+                                <input type="range" id="param2Slider" min="0" max="1" step="0.01" value="0.2" class="w-full bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                        </div>
                     </div>
-                    <input type="range" id="trafficVol" min="0" max="1" step="0.01" value="0.6" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                </div>
 
-                <div class="space-y-2">
-                    <div class="flex justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
-                        <span>Wind / HVAC Vent</span>
-                        <span id="windVal">40%</span>
-                    </div>
-                    <input type="range" id="windVol" min="0" max="1" step="0.01" value="0.4" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer">
-                </div>
-
-                <div class="flex items-center justify-between p-4 bg-slate-800/50 rounded-2xl">
-                    <div>
-                        <p class="font-medium">Rain on Glass</p>
-                        <p class="text-xs text-slate-500">Soft pitter-patter</p>
-                    </div>
-                    <button id="rainToggle" class="w-12 h-6 bg-slate-700 rounded-full relative transition-colors duration-200">
-                        <div id="rainKnob" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+                    <button id="playBtn" class="glow-button w-full py-5 md:py-7 bg-indigo-600 hover:bg-indigo-500 active:scale-95 rounded-[1.8rem] md:rounded-[2.2rem] font-black text-lg md:text-2xl flex items-center justify-center gap-4 shadow-lg shadow-indigo-500/20">
+                        <span id="playIcon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                        <span id="playText">Begin Session</span>
                     </button>
+
+                    <div class="p-5 bg-indigo-500/5 rounded-3xl border border-indigo-500/10 flex items-center justify-between">
+                        <div class="pr-2">
+                            <p class="font-bold text-white text-sm md:text-base">Environment Detail</p>
+                            <p class="text-[9px] md:text-[10px] text-indigo-400/60 uppercase font-bold tracking-widest">Extra Layer</p>
+                        </div>
+                        <button id="extraToggle" class="min-w-[48px] h-6 bg-slate-800 rounded-full relative transition-all duration-300">
+                            <div id="extraKnob" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Track Selection -->
+                <div class="lg:col-span-7 xl:col-span-8 space-y-6">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-2">
+                        <span class="section-label mb-0">Select Focus Soundtrack</span>
+                        <div class="flex items-center gap-3 w-full sm:w-auto bg-white/5 p-2 px-4 rounded-2xl">
+                            <span class="text-[9px] text-slate-500 font-bold uppercase">Master</span>
+                            <input type="range" id="masterVol" min="0" max="1" step="0.01" value="0.7" class="flex-grow sm:w-24">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="trackGrid">
+                        <div class="track-card p-4 rounded-2xl bg-white/5 active" data-track="city">
+                            <div class="text-[11px] md:text-xs font-bold text-white">City at Night</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Traffic & Wind</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="brown">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Brown Noise</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Deeper Rumble</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="pink">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Pink Noise</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Steady Rain</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="white">
+                            <div class="text-[11px] md:text-xs font-bold text-white">White Noise</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Radio Static</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="thunder">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Thunderstorm</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Safety & Rumble</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="waves">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Lapping Waves</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Rhythmic Pace</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="forest">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Forest Floor</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Birds & Leaves</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="cafe">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Rainy Cafe</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Muffled Chatter</div>
+                        </div>
+                        <div class="track-card p-4 rounded-2xl bg-white/5" data-track="library">
+                            <div class="text-[11px] md:text-xs font-bold text-white">Library</div>
+                            <div class="text-[9px] text-slate-500 font-medium italic">Body Doubling</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center pt-2">
+                        <p id="statusMsg" class="text-[10px] md:text-[11px] text-slate-500 font-medium italic border-t border-white/5 pt-4 w-full text-center">
+                            Synthesizing ambience in real-time. Choose a focus layer to begin.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="text-center space-y-1">
-            <p id="statusMsg" class="text-xs text-indigo-400/70 italic">Audio is currently muted for your comfort.</p>
-        </div>
-    </div>
-
-    <!-- Bottom Ad Placeholder (Square/Responsive) -->
-    <div class="glass max-w-md w-full p-4 rounded-xl ad-container" style="min-height: 250px;">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8895675153868747"
-             crossorigin="anonymous"></script>
-                <!-- placeholder1 -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-8895675153868747"
-                     data-ad-slot="3245168838"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-        <!--<span>Advertisement Placeholder</span>-->
+        </main>
     </div>
 
     <script>
         let audioCtx;
         let isPlaying = false;
-        let isRainOn = false;
+        let extraLayerOn = false;
+        let activeTrack = 'city';
 
-        // Sound Nodes
-        let trafficNoise, windNoise, rainNoise;
-        let trafficGain, windGain, rainGain, masterGain;
+        let g1, g2, gExtra, gMaster;
         let analyzer;
+        let currentSources = [];
+        let currentIntervals = [];
+
+        const trackConfigs = {
+            city: { label: "High-Rise Environment", p1: "Traffic Hum", p2: "Condo Wind", def1: 0.3, def2: 0.2 },
+            brown: { label: "Deep Frequency", p1: "Rumble Depth", p2: "Roar Intensity", def1: 0.8, def2: 0.4 },
+            pink: { label: "Soft Static", p1: "Rain Texture", p2: "Rustle Depth", def1: 0.6, def2: 0.3 },
+            white: { label: "Clinical Isolation", p1: "Static Sharpness", p2: "Air Density", def1: 0.4, def2: 0.2 },
+            thunder: { label: "Storm Atmosphere", p1: "Thunder Frequency", p2: "Rain Intensity", def1: 0.5, def2: 0.7 },
+            waves: { label: "Coastline Flow", p1: "Wave Strength", p2: "Water Softness", def1: 0.6, def2: 0.4 },
+            forest: { label: "Natural Calm", p1: "Bird Frequency", p2: "Leaf Rustle", def1: 0.3, def2: 0.5 },
+            cafe: { label: "Public Ambience", p1: "Muffled Chatter", p2: "Window Rain", def1: 0.4, def2: 0.6 },
+            library: { label: "Academic Space", p1: "Page Turning", p2: "Ambient Hum", def1: 0.2, def2: 0.1 }
+        };
 
         const visualizer = document.getElementById('visualizer');
         const bars = [];
-        for (let i = 0; i < 32; i++) {
+        const barCount = window.innerWidth < 480 ? 32 : 48;
+        for (let i = 0; i < barCount; i++) {
             const bar = document.createElement('div');
-            bar.className = 'visualizer-bar w-2 bg-indigo-500/40 rounded-t-full';
+            bar.className = 'visualizer-bar w-1 sm:w-1.5 bg-indigo-400/20 rounded-t-full';
             bar.style.height = '4px';
             visualizer.appendChild(bar);
             bars.push(bar);
         }
 
-        function createWhiteNoise(ctx) {
-            const bufferSize = 2 * ctx.sampleRate,
-                noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate),
-                output = noiseBuffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) {
-                output[i] = Math.random() * 2 - 1;
+        function createNoiseBuffer(ctx, type) {
+            const bufferSize = 2 * ctx.sampleRate;
+            const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            const output = buffer.getChannelData(0);
+            if (type === 'white') {
+                for (let i = 0; i < bufferSize; i++) output[i] = Math.random() * 2 - 1;
+            } else if (type === 'pink') {
+                let b0, b1, b2, b3, b4, b5, b6; b0 = b1 = b2 = b3 = b4 = b5 = b6 = 0.0;
+                for (let i = 0; i < bufferSize; i++) {
+                    let white = Math.random() * 2 - 1;
+                    b0 = 0.99886 * b0 + white * 0.0555179; b1 = 0.99332 * b1 + white * 0.0750759;
+                    b2 = 0.96900 * b2 + white * 0.1538520; b3 = 0.86650 * b3 + white * 0.3104856;
+                    b4 = 0.55000 * b4 + white * 0.5329522; b5 = -0.7616 * b5 - white * 0.0168980;
+                    output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+                    b6 = white * 0.115926;
+                }
+            } else if (type === 'brown') {
+                let lastOut = 0.0;
+                for (let i = 0; i < bufferSize; i++) {
+                    const white = Math.random() * 2 - 1;
+                    output[i] = (lastOut + (0.02 * white)) / 1.02; lastOut = output[i];
+                    output[i] *= 3.5;
+                }
             }
-            const whiteNoise = ctx.createBufferSource();
-            whiteNoise.buffer = noiseBuffer;
-            whiteNoise.loop = true;
-            return whiteNoise;
+            return buffer;
+        }
+
+        function createSource(type) {
+            const s = audioCtx.createBufferSource();
+            s.buffer = createNoiseBuffer(audioCtx, type);
+            s.loop = true;
+            return s;
         }
 
         function setupAudio() {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            masterGain = audioCtx.createGain();
-            masterGain.connect(audioCtx.destination);
+            gMaster = audioCtx.createGain();
+            gMaster.connect(audioCtx.destination);
+            gMaster.gain.value = 0;
             
             analyzer = audioCtx.createAnalyser();
-            masterGain.connect(analyzer);
-            analyzer.fftSize = 64;
+            gMaster.connect(analyzer);
+            analyzer.fftSize = 128;
 
-            // 1. DISTANT TRAFFIC HUM (Brown Noise + Low Pass)
-            const trafficSource = createWhiteNoise(audioCtx);
-            const trafficFilter = audioCtx.createBiquadFilter();
-            trafficFilter.type = 'lowpass';
-            trafficFilter.frequency.value = 150; 
+            g1 = audioCtx.createGain();
+            g2 = audioCtx.createGain();
+            gExtra = audioCtx.createGain();
             
-            trafficGain = audioCtx.createGain();
-            trafficGain.gain.value = document.getElementById('trafficVol').value * 0.5;
+            g1.connect(gMaster);
+            g2.connect(gMaster);
+            gExtra.connect(gMaster);
+            gExtra.gain.value = 0;
 
-            trafficSource.connect(trafficFilter);
-            trafficFilter.connect(trafficGain);
-            trafficGain.connect(masterGain);
-            trafficSource.start();
-
-            // 2. WIND / HVAC (Pink Noise + Low Pass + Slow LFO)
-            const windSource = createWhiteNoise(audioCtx);
-            const windFilter = audioCtx.createBiquadFilter();
-            windFilter.type = 'lowpass';
-            windFilter.frequency.value = 400;
-
-            windGain = audioCtx.createGain();
-            windGain.gain.value = document.getElementById('windVol').value * 0.3;
-
-            const windLFO = audioCtx.createOscillator();
-            windLFO.type = 'sine';
-            windLFO.frequency.value = 0.1; 
-            const lfoGain = audioCtx.createGain();
-            lfoGain.gain.value = 0.1;
-            windLFO.connect(lfoGain);
-            lfoGain.connect(windGain.gain);
-            windLFO.start();
-
-            windSource.connect(windFilter);
-            windFilter.connect(windGain);
-            windGain.connect(masterGain);
-            windSource.start();
-
-            // 3. RAIN
-            const rainSource = createWhiteNoise(audioCtx);
-            const rainFilter = audioCtx.createBiquadFilter();
-            rainFilter.type = 'bandpass';
-            rainFilter.frequency.value = 1200;
-            rainFilter.Q.value = 0.5;
-
-            rainGain = audioCtx.createGain();
-            rainGain.gain.value = 0;
-
-            rainSource.connect(rainFilter);
-            rainFilter.connect(rainGain);
-            rainGain.connect(masterGain);
-            rainSource.start();
-
-            setInterval(() => {
-                if (isPlaying) triggerDistantEvent();
-            }, 8000);
+            startExtraLoop();
         }
 
-        function triggerDistantEvent() {
-            const type = Math.random();
-            if (type > 0.7) { 
+        function startExtraLoop() {
+            const chirp = () => {
+                if (!extraLayerOn || !isPlaying || !audioCtx) { setTimeout(chirp, 1000); return; }
                 const osc = audioCtx.createOscillator();
-                const g = audioCtx.createGain();
-                const f = audioCtx.createBiquadFilter();
-                osc.type = 'sine';
-                osc.frequency.setValueAtTime(220 + Math.random() * 100, audioCtx.currentTime);
-                f.type = 'lowpass';
-                f.frequency.value = 400; 
-                g.gain.setValueAtTime(0, audioCtx.currentTime);
-                g.gain.linearRampToValueAtTime(0.02 * (document.getElementById('trafficVol').value), audioCtx.currentTime + 0.5);
-                g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
-                osc.connect(f);
-                f.connect(g);
-                g.connect(masterGain);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 3);
+                const localG = audioCtx.createGain();
+                osc.frequency.setValueAtTime(3800 + Math.random() * 400, audioCtx.currentTime);
+                localG.gain.setValueAtTime(0, audioCtx.currentTime);
+                localG.gain.linearRampToValueAtTime(0.005, audioCtx.currentTime + 0.02);
+                localG.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
+                osc.connect(localG); localG.connect(gExtra);
+                osc.start(); osc.stop(audioCtx.currentTime + 0.15);
+                setTimeout(chirp, Math.random() > 0.9 ? 2000 : 180);
+            };
+            chirp();
+        }
+
+        function clearAudio() {
+            currentSources.forEach(s => { try { s.stop(); } catch(e) {} });
+            currentIntervals.forEach(i => clearInterval(i));
+            currentSources = [];
+            currentIntervals = [];
+        }
+
+        function updateUIControls(trackId) {
+            const config = trackConfigs[trackId];
+            document.getElementById('dynamicSectionLabel').innerText = config.label;
+            document.getElementById('param1Label').innerText = config.p1;
+            document.getElementById('param2Label').innerText = config.p2;
+            
+            const s1 = document.getElementById('param1Slider');
+            const s2 = document.getElementById('param2Slider');
+            s1.value = config.def1;
+            s2.value = config.def2;
+            document.getElementById('param1Val').innerText = Math.round(config.def1 * 100) + "%";
+            document.getElementById('param2Val').innerText = Math.round(config.def2 * 100) + "%";
+            
+            if (audioCtx) {
+                g1.gain.setTargetAtTime(config.def1, audioCtx.currentTime, 0.1);
+                g2.gain.setTargetAtTime(config.def2, audioCtx.currentTime, 0.1);
             }
         }
 
-        function updateVisualizer() {
-            if (!isPlaying) return;
-            const dataArray = new Uint8Array(analyzer.frequencyBinCount);
-            analyzer.getByteFrequencyData(dataArray);
-            bars.forEach((bar, i) => {
-                const val = dataArray[i] || 0;
-                const height = Math.max(4, (val / 255) * 80);
-                bar.style.height = `${height}%`;
-                bar.style.opacity = 0.3 + (val / 255);
-            });
-            requestAnimationFrame(updateVisualizer);
+        function buildSoundscape(trackId) {
+            if (!audioCtx) return;
+            clearAudio();
+            
+            let s1, s2, f1, f2;
+
+            switch(trackId) {
+                case 'city':
+                    s1 = createSource('brown'); f1 = audioCtx.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 120;
+                    s1.connect(f1); f1.connect(g1); s1.start();
+                    s2 = createSource('pink'); f2 = audioCtx.createBiquadFilter();
+                    f2.type = 'lowpass'; f2.frequency.value = 400;
+                    s2.connect(f2); f2.connect(g2); s2.start();
+                    currentSources.push(s1, s2);
+                    break;
+                case 'brown':
+                case 'pink':
+                case 'white':
+                    s1 = createSource(trackId); s1.connect(g1); s1.start();
+                    s2 = createSource(trackId); f2 = audioCtx.createBiquadFilter();
+                    f2.type = 'lowpass'; f2.frequency.value = 300;
+                    s2.connect(f2); f2.connect(g2); s2.start();
+                    currentSources.push(s1, s2);
+                    break;
+                case 'thunder':
+                    s1 = createSource('brown'); f1 = audioCtx.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 80;
+                    s1.connect(f1); f1.connect(g1); s1.start(); 
+                    s2 = createSource('white'); f2 = audioCtx.createBiquadFilter();
+                    f2.type = 'bandpass'; f2.frequency.value = 1000;
+                    s2.connect(f2); f2.connect(g2); s2.start();
+                    currentSources.push(s1, s2);
+                    const tInt = setInterval(() => {
+                        if (!isPlaying || activeTrack !== 'thunder') return;
+                        if (Math.random() > (1 - document.getElementById('param1Slider').value * 0.3)) {
+                            const osc = audioCtx.createOscillator(); const tg = audioCtx.createGain();
+                            osc.type = 'triangle'; osc.frequency.value = 40 + Math.random() * 20;
+                            tg.gain.setValueAtTime(0, audioCtx.currentTime);
+                            tg.gain.exponentialRampToValueAtTime(0.6, audioCtx.currentTime + 0.1);
+                            tg.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 4);
+                            osc.connect(tg); tg.connect(gMaster); osc.start(); osc.stop(audioCtx.currentTime + 4.1);
+                        }
+                    }, 3000);
+                    currentIntervals.push(tInt);
+                    break;
+                case 'waves':
+                    s1 = createSource('pink'); const mod = audioCtx.createGain();
+                    const lfo = audioCtx.createOscillator(); lfo.frequency.value = 0.1;
+                    lfo.connect(mod.gain); s1.connect(mod); mod.connect(g1);
+                    lfo.start(); s1.start(); s2 = createSource('brown');
+                    f2 = audioCtx.createBiquadFilter(); f2.type = 'lowpass'; f2.frequency.value = 100;
+                    s2.connect(f2); f2.connect(g2); s2.start();
+                    currentSources.push(s1, s2);
+                    break;
+                case 'forest':
+                    s1 = createSource('pink'); f1 = audioCtx.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 600;
+                    s1.connect(f1); f1.connect(g2); s1.start();
+                    currentSources.push(s1);
+                    const fInt = setInterval(() => {
+                        if (!isPlaying || activeTrack !== 'forest') return;
+                        if (Math.random() > (1 - document.getElementById('param1Slider').value)) {
+                            const osc = audioCtx.createOscillator(); const tg = audioCtx.createGain();
+                            osc.frequency.value = 2000 + Math.random() * 2000;
+                            tg.gain.setValueAtTime(0, audioCtx.currentTime);
+                            tg.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+                            tg.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.2);
+                            osc.connect(tg); tg.connect(gMaster); osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+                        }
+                    }, 2000);
+                    currentIntervals.push(fInt);
+                    break;
+                case 'cafe':
+                    s1 = createSource('pink'); f1 = audioCtx.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 400;
+                    s1.connect(f1); f1.connect(g1); s1.start();
+                    s2 = createSource('white'); f2 = audioCtx.createBiquadFilter();
+                    f2.type = 'bandpass'; f2.frequency.value = 2500;
+                    s2.connect(f2); f2.connect(g2); s2.start();
+                    currentSources.push(s1, s2);
+                    break;
+                case 'library':
+                    s1 = createSource('white'); f1 = audioCtx.createBiquadFilter();
+                    f1.type = 'lowpass'; f1.frequency.value = 1000;
+                    const lMod = audioCtx.createGain(); lMod.gain.value = 0.05;
+                    s1.connect(f1); f1.connect(lMod); lMod.connect(g2); s1.start();
+                    currentSources.push(s1);
+                    const lInt = setInterval(() => {
+                        if (!isPlaying || activeTrack !== 'library') return;
+                        if (Math.random() > (1 - document.getElementById('param1Slider').value)) {
+                            const snap = createSource('white'); const sg = audioCtx.createGain();
+                            sg.gain.setValueAtTime(0.02, audioCtx.currentTime);
+                            sg.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+                            snap.connect(sg); sg.connect(gMaster); snap.start(); snap.stop(audioCtx.currentTime + 0.2);
+                        }
+                    }, 4000);
+                    currentIntervals.push(lInt);
+                    break;
+            }
         }
 
-        const playBtn = document.getElementById('playBtn');
-        const playIcon = document.getElementById('playIcon');
-        const playText = document.getElementById('playText');
-        const statusMsg = document.getElementById('statusMsg');
+        const updateVisualizer = () => {
+            if (!isPlaying) return;
+            const data = new Uint8Array(analyzer.frequencyBinCount);
+            analyzer.getByteFrequencyData(data);
+            bars.forEach((bar, i) => {
+                const val = data[i] || 0;
+                bar.style.height = `${Math.max(4, (val / 255) * 90)}%`;
+                bar.style.opacity = 0.1 + (val / 255);
+            });
+            requestAnimationFrame(updateVisualizer);
+        };
 
-        playBtn.addEventListener('click', () => {
-            if (!audioCtx) setupAudio();
+        // UI Logic
+        document.getElementById('playBtn').addEventListener('click', () => {
+            if (!audioCtx) {
+                setupAudio();
+                buildSoundscape(activeTrack);
+            }
             if (isPlaying) {
-                masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
+                gMaster.gain.setTargetAtTime(0, audioCtx.currentTime, 0.2);
                 isPlaying = false;
-                playText.innerText = "Resume Night";
-                playIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
-                statusMsg.innerText = "City silence...";
+                document.getElementById('playText').innerText = "Resume Session";
+                document.getElementById('playIcon').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
             } else {
                 audioCtx.resume();
-                masterGain.gain.setTargetAtTime(1, audioCtx.currentTime, 0.1);
+                gMaster.gain.setTargetAtTime(document.getElementById('masterVol').value, audioCtx.currentTime, 0.2);
                 isPlaying = true;
-                playText.innerText = "Silence the City";
-                playIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
-                statusMsg.innerText = "A hundred stories below you.";
+                document.getElementById('playText').innerText = "Session Active";
+                document.getElementById('playIcon').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
                 updateVisualizer();
             }
         });
 
-        document.getElementById('trafficVol').addEventListener('input', (e) => {
-            const val = e.target.value;
-            document.getElementById('trafficVal').innerText = Math.round(val * 100) + "%";
-            if (trafficGain) trafficGain.gain.setTargetAtTime(val * 0.5, audioCtx.currentTime, 0.1);
+        document.querySelectorAll('.track-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.track-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                activeTrack = card.dataset.track;
+                updateUIControls(activeTrack);
+                if (isPlaying) buildSoundscape(activeTrack);
+            });
         });
 
-        document.getElementById('windVol').addEventListener('input', (e) => {
+        document.getElementById('param1Slider').addEventListener('input', (e) => {
             const val = e.target.value;
-            document.getElementById('windVal').innerText = Math.round(val * 100) + "%";
-            if (windGain) windGain.gain.setTargetAtTime(val * 0.3, audioCtx.currentTime, 0.1);
+            document.getElementById('param1Val').innerText = Math.round(val * 100) + "%";
+            if (g1) g1.gain.setTargetAtTime(val, audioCtx.currentTime, 0.1);
         });
 
-        const rainToggle = document.getElementById('rainToggle');
-        const rainKnob = document.getElementById('rainKnob');
-        rainToggle.addEventListener('click', () => {
+        document.getElementById('param2Slider').addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('param2Val').innerText = Math.round(val * 100) + "%";
+            if (g2) g2.gain.setTargetAtTime(val, audioCtx.currentTime, 0.1);
+        });
+
+        document.getElementById('masterVol').addEventListener('input', (e) => {
+            if (gMaster && isPlaying) gMaster.gain.setTargetAtTime(e.target.value, audioCtx.currentTime, 0.1);
+        });
+
+        document.getElementById('extraToggle').addEventListener('click', function() {
             if (!audioCtx) setupAudio();
-            isRainOn = !isRainOn;
-            if (isRainOn) {
-                rainToggle.classList.add('bg-indigo-600');
-                rainKnob.style.transform = 'translateX(24px)';
-                rainGain.gain.setTargetAtTime(0.15, audioCtx.currentTime, 0.5);
-            } else {
-                rainToggle.classList.remove('bg-indigo-600');
-                rainKnob.style.transform = 'translateX(0)';
-                rainGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
-            }
+            extraLayerOn = !extraLayerOn;
+            this.classList.toggle('bg-indigo-600', extraLayerOn);
+            document.getElementById('extraKnob').style.transform = extraLayerOn ? 'translateX(24px)' : 'translateX(0)';
+            gExtra.gain.setTargetAtTime(extraLayerOn ? 1 : 0, audioCtx.currentTime, 0.5);
         });
+
+        updateUIControls('city');
     </script>
 </body>
 </html>
