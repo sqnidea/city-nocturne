@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nightrise Audio: City Nocturne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f1a 100%);
+            color: #e2e8f0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .glow-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+        }
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        input[type=range] {
+            accent-color: #6366f1;
+        }
+        .visualizer-bar {
+            transition: height 0.05s ease;
+        }
+        /* Style for the Ad Container */
+        .ad-container {
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 gap-8">
+
+    <!-- Top Ad Placeholder (Standard Banner 728x90) -->
+    <div class="glass max-w-4xl w-full p-2 rounded-xl ad-container">
+        <!-- Paste your AdSense/Media.net script here -->
+        <span>Advertisement Placeholder</span>
+    </div>
+
+    <div class="glass max-w-md w-full rounded-3xl p-8 space-y-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold tracking-tight text-indigo-300">City Nocturne</h1>
+            <p class="text-slate-400 text-sm mt-2">High-Rise Ambience Generator</p>
+        </div>
+
+        <!-- Visualizer -->
+        <div id="visualizer" class="h-24 flex items-end justify-center gap-1 overflow-hidden rounded-xl bg-slate-900/50 p-4">
+            <!-- Bars generated via JS -->
+        </div>
+
+        <!-- Controls -->
+        <div class="space-y-6">
+            <div class="flex items-center justify-between">
+                <button id="playBtn" class="glow-button w-full py-4 bg-indigo-600 hover:bg-indigo-500 rounded-2xl font-semibold flex items-center justify-center gap-3">
+                    <span id="playIcon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                    <span id="playText">Enter the Night</span>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
+                        <span>Street Traffic Hum</span>
+                        <span id="trafficVal">60%</span>
+                    </div>
+                    <input type="range" id="trafficVol" min="0" max="1" step="0.01" value="0.6" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <div class="space-y-2">
+                    <div class="flex justify-between text-xs font-medium text-slate-400 uppercase tracking-wider">
+                        <span>Wind / HVAC Vent</span>
+                        <span id="windVal">40%</span>
+                    </div>
+                    <input type="range" id="windVol" min="0" max="1" step="0.01" value="0.4" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <div class="flex items-center justify-between p-4 bg-slate-800/50 rounded-2xl">
+                    <div>
+                        <p class="font-medium">Rain on Glass</p>
+                        <p class="text-xs text-slate-500">Soft pitter-patter</p>
+                    </div>
+                    <button id="rainToggle" class="w-12 h-6 bg-slate-700 rounded-full relative transition-colors duration-200">
+                        <div id="rainKnob" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-200"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center space-y-1">
+            <p id="statusMsg" class="text-xs text-indigo-400/70 italic">Audio is currently muted for your comfort.</p>
+        </div>
+    </div>
+
+    <!-- Bottom Ad Placeholder (Square/Responsive) -->
+    <div class="glass max-w-md w-full p-4 rounded-xl ad-container" style="min-height: 250px;">
+        <span>Advertisement Placeholder</span>
+    </div>
+
+    <script>
+        let audioCtx;
+        let isPlaying = false;
+        let isRainOn = false;
+
+        // Sound Nodes
+        let trafficNoise, windNoise, rainNoise;
+        let trafficGain, windGain, rainGain, masterGain;
+        let analyzer;
+
+        const visualizer = document.getElementById('visualizer');
+        const bars = [];
+        for (let i = 0; i < 32; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'visualizer-bar w-2 bg-indigo-500/40 rounded-t-full';
+            bar.style.height = '4px';
+            visualizer.appendChild(bar);
+            bars.push(bar);
+        }
+
+        function createWhiteNoise(ctx) {
+            const bufferSize = 2 * ctx.sampleRate,
+                noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate),
+                output = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+            const whiteNoise = ctx.createBufferSource();
+            whiteNoise.buffer = noiseBuffer;
+            whiteNoise.loop = true;
+            return whiteNoise;
+        }
+
+        function setupAudio() {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            masterGain = audioCtx.createGain();
+            masterGain.connect(audioCtx.destination);
+            
+            analyzer = audioCtx.createAnalyser();
+            masterGain.connect(analyzer);
+            analyzer.fftSize = 64;
+
+            // 1. DISTANT TRAFFIC HUM (Brown Noise + Low Pass)
+            const trafficSource = createWhiteNoise(audioCtx);
+            const trafficFilter = audioCtx.createBiquadFilter();
+            trafficFilter.type = 'lowpass';
+            trafficFilter.frequency.value = 150; 
+            
+            trafficGain = audioCtx.createGain();
+            trafficGain.gain.value = document.getElementById('trafficVol').value * 0.5;
+
+            trafficSource.connect(trafficFilter);
+            trafficFilter.connect(trafficGain);
+            trafficGain.connect(masterGain);
+            trafficSource.start();
+
+            // 2. WIND / HVAC (Pink Noise + Low Pass + Slow LFO)
+            const windSource = createWhiteNoise(audioCtx);
+            const windFilter = audioCtx.createBiquadFilter();
+            windFilter.type = 'lowpass';
+            windFilter.frequency.value = 400;
+
+            windGain = audioCtx.createGain();
+            windGain.gain.value = document.getElementById('windVol').value * 0.3;
+
+            const windLFO = audioCtx.createOscillator();
+            windLFO.type = 'sine';
+            windLFO.frequency.value = 0.1; 
+            const lfoGain = audioCtx.createGain();
+            lfoGain.gain.value = 0.1;
+            windLFO.connect(lfoGain);
+            lfoGain.connect(windGain.gain);
+            windLFO.start();
+
+            windSource.connect(windFilter);
+            windFilter.connect(windGain);
+            windGain.connect(masterGain);
+            windSource.start();
+
+            // 3. RAIN
+            const rainSource = createWhiteNoise(audioCtx);
+            const rainFilter = audioCtx.createBiquadFilter();
+            rainFilter.type = 'bandpass';
+            rainFilter.frequency.value = 1200;
+            rainFilter.Q.value = 0.5;
+
+            rainGain = audioCtx.createGain();
+            rainGain.gain.value = 0;
+
+            rainSource.connect(rainFilter);
+            rainFilter.connect(rainGain);
+            rainGain.connect(masterGain);
+            rainSource.start();
+
+            setInterval(() => {
+                if (isPlaying) triggerDistantEvent();
+            }, 8000);
+        }
+
+        function triggerDistantEvent() {
+            const type = Math.random();
+            if (type > 0.7) { 
+                const osc = audioCtx.createOscillator();
+                const g = audioCtx.createGain();
+                const f = audioCtx.createBiquadFilter();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(220 + Math.random() * 100, audioCtx.currentTime);
+                f.type = 'lowpass';
+                f.frequency.value = 400; 
+                g.gain.setValueAtTime(0, audioCtx.currentTime);
+                g.gain.linearRampToValueAtTime(0.02 * (document.getElementById('trafficVol').value), audioCtx.currentTime + 0.5);
+                g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2.5);
+                osc.connect(f);
+                f.connect(g);
+                g.connect(masterGain);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 3);
+            }
+        }
+
+        function updateVisualizer() {
+            if (!isPlaying) return;
+            const dataArray = new Uint8Array(analyzer.frequencyBinCount);
+            analyzer.getByteFrequencyData(dataArray);
+            bars.forEach((bar, i) => {
+                const val = dataArray[i] || 0;
+                const height = Math.max(4, (val / 255) * 80);
+                bar.style.height = `${height}%`;
+                bar.style.opacity = 0.3 + (val / 255);
+            });
+            requestAnimationFrame(updateVisualizer);
+        }
+
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const playText = document.getElementById('playText');
+        const statusMsg = document.getElementById('statusMsg');
+
+        playBtn.addEventListener('click', () => {
+            if (!audioCtx) setupAudio();
+            if (isPlaying) {
+                masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
+                isPlaying = false;
+                playText.innerText = "Resume Night";
+                playIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+                statusMsg.innerText = "City silence...";
+            } else {
+                audioCtx.resume();
+                masterGain.gain.setTargetAtTime(1, audioCtx.currentTime, 0.1);
+                isPlaying = true;
+                playText.innerText = "Silence the City";
+                playIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+                statusMsg.innerText = "A hundred stories below you.";
+                updateVisualizer();
+            }
+        });
+
+        document.getElementById('trafficVol').addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('trafficVal').innerText = Math.round(val * 100) + "%";
+            if (trafficGain) trafficGain.gain.setTargetAtTime(val * 0.5, audioCtx.currentTime, 0.1);
+        });
+
+        document.getElementById('windVol').addEventListener('input', (e) => {
+            const val = e.target.value;
+            document.getElementById('windVal').innerText = Math.round(val * 100) + "%";
+            if (windGain) windGain.gain.setTargetAtTime(val * 0.3, audioCtx.currentTime, 0.1);
+        });
+
+        const rainToggle = document.getElementById('rainToggle');
+        const rainKnob = document.getElementById('rainKnob');
+        rainToggle.addEventListener('click', () => {
+            if (!audioCtx) setupAudio();
+            isRainOn = !isRainOn;
+            if (isRainOn) {
+                rainToggle.classList.add('bg-indigo-600');
+                rainKnob.style.transform = 'translateX(24px)';
+                rainGain.gain.setTargetAtTime(0.15, audioCtx.currentTime, 0.5);
+            } else {
+                rainToggle.classList.remove('bg-indigo-600');
+                rainKnob.style.transform = 'translateX(0)';
+                rainGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
+            }
+        });
+    </script>
+</body>
+</html>
