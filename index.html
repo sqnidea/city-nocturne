@@ -2,41 +2,40 @@
 <html lang="en">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8895675153868747"
-     crossorigin="anonymous"></script>
+     crossorigin="anonymous">
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nocturne Focus: Dynamic Ambient Mixer</title>
+    <title>Nocturne Focus: Future Dusk Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 
-      AdSense Script Placeholder:
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-################" crossorigin="anonymous"></script>
-    -->
     <style>
+        /* 2026 Color of the Year: Future Dusk Palette (#1A1B3B / #12122b) */
         body {
-            background: radial-gradient(circle at top right, #1e1b4b 0%, #020617 100%);
+            background: radial-gradient(circle at top right, #1A1B3B 0%, #0d0d1a 100%);
             color: #e2e8f0;
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             overflow-x: hidden;
         }
         .glow-button {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
         }
         .glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(21, 21, 45, 0.7);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(139, 92, 246, 0.15);
         }
         input[type=range] {
-            accent-color: #818cf8;
+            accent-color: #a78bfa;
             height: 6px;
         }
         .visualizer-bar {
-            transition: height 0.1s ease;
+            transition: height 0.08s ease;
         }
         .track-card {
             transition: all 0.2s ease;
             cursor: pointer;
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(139, 92, 246, 0.05);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -46,59 +45,47 @@
             .track-card { min-height: 85px; }
         }
         .track-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(139, 92, 246, 0.08);
+            border-color: rgba(139, 92, 246, 0.2);
         }
         .track-card.active {
-            background: rgba(99, 102, 241, 0.25);
-            border-color: rgba(99, 102, 241, 0.6);
-            box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+            background: rgba(124, 58, 237, 0.3);
+            border-color: rgba(167, 139, 250, 0.6);
+            box-shadow: 0 0 25px rgba(124, 58, 237, 0.2);
         }
         .section-label {
             font-size: 0.65rem;
             font-weight: 800;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #818cf8;
+            color: #a78bfa;
             margin-bottom: 1rem;
             display: block;
+        }
+        .dynamic-glow {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center py-8 px-4 gap-8">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8895675153868747"
-     crossorigin="anonymous"></script>
-<!-- Responsive Ads -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8895675153868747"
-     data-ad-slot="5543273667"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-    <!-- Main Content Area -->
+
     <div class="w-full max-w-5xl flex flex-col items-center gap-8">
-        
-        <!-- CENTER: MAIN APP -->
-        <main class="glass w-full rounded-[2.5rem] md:rounded-[3.5rem] p-6 sm:p-8 md:p-12 shadow-2xl space-y-8 md:space-y-10">
+        <main class="glass w-full rounded-[2.5rem] md:rounded-[3.5rem] p-6 sm:p-8 md:p-12 shadow-2xl space-y-8 md:space-y-10 dynamic-glow">
             <header class="text-center space-y-1">
-                <h1 class="text-3xl md:text-5xl font-black tracking-tighter text-white">Nocturne Focus</h1>
-                <p class="text-indigo-300/60 text-sm md:text-base font-medium italic">High-Rise Ambience & Focus Synthesis</p>
+                <h1 class="text-3xl md:text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300">
+                    Nocturne Focus
+                </h1>
+                <p class="text-indigo-300/60 text-sm md:text-base font-medium italic">Future Dusk Edition — 2026 Ambient Mixer</p>
             </header>
 
-            <!-- Main Visualizer -->
-            <div id="visualizer" class="h-20 md:h-28 flex items-end justify-center gap-1 md:gap-1.5 overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-black/40 p-4 md:p-6 border border-white/5">
+            <div id="visualizer" class="h-24 md:h-32 flex items-end justify-center gap-1 md:gap-1.5 overflow-hidden rounded-[1.5rem] md:rounded-[2rem] bg-black/50 p-4 md:p-6 border border-white/5">
                 <!-- Bars generated via JS -->
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                
-                <!-- Left Panel: DYNAMIC CONTROLS -->
                 <div class="lg:col-span-5 xl:col-span-4 space-y-6 md:space-y-8">
                     <div class="glass p-5 md:p-0 md:bg-transparent md:border-none rounded-3xl">
-                        <span id="dynamicSectionLabel" class="section-label">High-Rise Environment</span>
+                        <span id="dynamicSectionLabel" class="section-label text-indigo-400">High-Rise Environment</span>
                         <div class="space-y-6">
                             <div class="space-y-3">
                                 <div class="flex justify-between text-[11px] md:text-xs font-bold text-slate-400">
@@ -107,7 +94,6 @@
                                 </div>
                                 <input type="range" id="param1Slider" min="0" max="1" step="0.01" value="0.3" class="w-full bg-slate-800 rounded-lg appearance-none cursor-pointer">
                             </div>
-                            
                             <div class="space-y-3">
                                 <div class="flex justify-between text-[11px] md:text-xs font-bold text-slate-400">
                                     <span id="param2Label">Condo Window Wind</span>
@@ -118,17 +104,17 @@
                         </div>
                     </div>
 
-                    <button id="playBtn" class="glow-button w-full py-5 md:py-7 bg-indigo-600 hover:bg-indigo-500 active:scale-95 rounded-[1.8rem] md:rounded-[2.2rem] font-black text-lg md:text-2xl flex items-center justify-center gap-4 shadow-lg shadow-indigo-500/20">
+                    <button id="playBtn" class="glow-button w-full py-5 md:py-7 hover:brightness-110 active:scale-95 rounded-[1.8rem] md:rounded-[2.2rem] font-black text-lg md:text-2xl flex items-center justify-center gap-4 shadow-lg shadow-indigo-500/20 text-white">
                         <span id="playIcon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
                         </span>
                         <span id="playText">Begin Session</span>
                     </button>
 
-                    <div class="p-5 bg-indigo-500/5 rounded-3xl border border-indigo-500/10 flex items-center justify-between">
+                    <div class="p-5 bg-purple-500/10 rounded-3xl border border-purple-500/10 flex items-center justify-between">
                         <div class="pr-2">
-                            <p class="font-bold text-white text-sm md:text-base">Environment Detail</p>
-                            <p class="text-[9px] md:text-[10px] text-indigo-400/60 uppercase font-bold tracking-widest">Extra Layer</p>
+                            <p class="font-bold text-white text-sm md:text-base">Atmospheric Detail</p>
+                            <p class="text-[9px] md:text-[10px] text-purple-400/60 uppercase font-bold tracking-widest">Random Textures</p>
                         </div>
                         <button id="extraToggle" class="min-w-[48px] h-6 bg-slate-800 rounded-full relative transition-all duration-300">
                             <div id="extraKnob" class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300"></div>
@@ -136,12 +122,11 @@
                     </div>
                 </div>
 
-                <!-- Right Panel: Track Selection -->
                 <div class="lg:col-span-7 xl:col-span-8 space-y-6">
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-2">
-                        <span class="section-label mb-0">Select Focus Soundtrack</span>
+                        <span class="section-label mb-0 text-indigo-400">Focus Synthesis</span>
                         <div class="flex items-center gap-3 w-full sm:w-auto bg-white/5 p-2 px-4 rounded-2xl">
-                            <span class="text-[9px] text-slate-500 font-bold uppercase">Master</span>
+                            <span class="text-[9px] text-slate-500 font-bold uppercase">Volume</span>
                             <input type="range" id="masterVol" min="0" max="1" step="0.01" value="0.7" class="flex-grow sm:w-24">
                         </div>
                     </div>
@@ -149,45 +134,45 @@
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3" id="trackGrid">
                         <div class="track-card p-4 rounded-2xl bg-white/5 active" data-track="city">
                             <div class="text-[11px] md:text-xs font-bold text-white">City at Night</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Traffic & Wind</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">High-Rise Hum</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="brown">
                             <div class="text-[11px] md:text-xs font-bold text-white">Brown Noise</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Deeper Rumble</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Darker Rumble</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="pink">
                             <div class="text-[11px] md:text-xs font-bold text-white">Pink Noise</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Steady Rain</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Soft Focus</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="white">
                             <div class="text-[11px] md:text-xs font-bold text-white">White Noise</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Radio Static</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Total Blur</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="thunder">
                             <div class="text-[11px] md:text-xs font-bold text-white">Thunderstorm</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Safety & Rumble</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Deep Shelter</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="waves">
                             <div class="text-[11px] md:text-xs font-bold text-white">Lapping Waves</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Rhythmic Pace</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Ocean Flow</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="forest">
                             <div class="text-[11px] md:text-xs font-bold text-white">Forest Floor</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Birds & Leaves</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Natural Life</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="cafe">
                             <div class="text-[11px] md:text-xs font-bold text-white">Rainy Cafe</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Muffled Chatter</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Distant Life</div>
                         </div>
                         <div class="track-card p-4 rounded-2xl bg-white/5" data-track="library">
-                            <div class="text-[11px] md:text-xs font-bold text-white">Library</div>
-                            <div class="text-[9px] text-slate-500 font-medium italic">Body Doubling</div>
+                            <div class="text-[11px] md:text-xs font-bold text-white">The Library</div>
+                            <div class="text-[9px] text-indigo-400/60 font-medium italic">Quiet Presence</div>
                         </div>
                     </div>
                     
                     <div class="flex justify-center pt-2">
-                        <p id="statusMsg" class="text-[10px] md:text-[11px] text-slate-500 font-medium italic border-t border-white/5 pt-4 w-full text-center">
-                            Synthesizing ambience in real-time. Choose a focus layer to begin.
+                        <p id="statusMsg" class="text-[10px] md:text-[11px] text-indigo-400/40 font-medium italic border-t border-white/5 pt-4 w-full text-center">
+                            Audio synthesized in real-time. Experience Future Dusk.
                         </p>
                     </div>
                 </div>
@@ -220,11 +205,17 @@
 
         const visualizer = document.getElementById('visualizer');
         const bars = [];
-        const barCount = window.innerWidth < 480 ? 32 : 48;
+        const barCount = window.innerWidth < 480 ? 32 : 64;
+        
+        const colors = ['#22d3ee', '#38bdf8', '#818cf8', '#a78bfa', '#c084fc', '#e879f9', '#f472b6'];
+
         for (let i = 0; i < barCount; i++) {
             const bar = document.createElement('div');
-            bar.className = 'visualizer-bar w-1 sm:w-1.5 bg-indigo-400/20 rounded-t-full';
+            const color = colors[Math.floor((i / barCount) * colors.length)];
+            bar.className = 'visualizer-bar w-1 sm:w-1.5 rounded-t-full';
+            bar.style.backgroundColor = color;
             bar.style.height = '4px';
+            bar.style.boxShadow = `0 0 10px ${color}33`;
             visualizer.appendChild(bar);
             bars.push(bar);
         }
@@ -271,7 +262,7 @@
             
             analyzer = audioCtx.createAnalyser();
             gMaster.connect(analyzer);
-            analyzer.fftSize = 128;
+            analyzer.fftSize = 256;
 
             g1 = audioCtx.createGain();
             g2 = audioCtx.createGain();
@@ -287,16 +278,32 @@
 
         function startExtraLoop() {
             const chirp = () => {
-                if (!extraLayerOn || !isPlaying || !audioCtx) { setTimeout(chirp, 1000); return; }
+                // If extra toggle is off, just keep looping the timer but don't play sound
+                if (!extraLayerOn || !isPlaying || !audioCtx) { 
+                    setTimeout(chirp, 500); 
+                    return; 
+                }
+                
                 const osc = audioCtx.createOscillator();
                 const localG = audioCtx.createGain();
-                osc.frequency.setValueAtTime(3800 + Math.random() * 400, audioCtx.currentTime);
+                
+                // Frequency slightly lower and more "organic" (2kHz range is easier to hear)
+                osc.frequency.setValueAtTime(2500 + Math.random() * 500, audioCtx.currentTime);
+                
                 localG.gain.setValueAtTime(0, audioCtx.currentTime);
-                localG.gain.linearRampToValueAtTime(0.005, audioCtx.currentTime + 0.02);
-                localG.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.1);
-                osc.connect(localG); localG.connect(gExtra);
-                osc.start(); osc.stop(audioCtx.currentTime + 0.15);
-                setTimeout(chirp, Math.random() > 0.9 ? 2000 : 180);
+                // Increased gain to 0.04 to make it audible
+                localG.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.01);
+                localG.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+                
+                osc.connect(localG); 
+                localG.connect(gExtra);
+                
+                osc.start(); 
+                osc.stop(audioCtx.currentTime + 0.2);
+                
+                // Randomized timing for a more natural feel
+                const delay = Math.random() > 0.8 ? 2000 : 400 + Math.random() * 1000;
+                setTimeout(chirp, delay);
             };
             chirp();
         }
@@ -313,14 +320,12 @@
             document.getElementById('dynamicSectionLabel').innerText = config.label;
             document.getElementById('param1Label').innerText = config.p1;
             document.getElementById('param2Label').innerText = config.p2;
-            
             const s1 = document.getElementById('param1Slider');
             const s2 = document.getElementById('param2Slider');
             s1.value = config.def1;
             s2.value = config.def2;
             document.getElementById('param1Val').innerText = Math.round(config.def1 * 100) + "%";
             document.getElementById('param2Val').innerText = Math.round(config.def2 * 100) + "%";
-            
             if (audioCtx) {
                 g1.gain.setTargetAtTime(config.def1, audioCtx.currentTime, 0.1);
                 g2.gain.setTargetAtTime(config.def2, audioCtx.currentTime, 0.1);
@@ -330,9 +335,7 @@
         function buildSoundscape(trackId) {
             if (!audioCtx) return;
             clearAudio();
-            
             let s1, s2, f1, f2;
-
             switch(trackId) {
                 case 'city':
                     s1 = createSource('brown'); f1 = audioCtx.createBiquadFilter();
@@ -343,9 +346,7 @@
                     s2.connect(f2); f2.connect(g2); s2.start();
                     currentSources.push(s1, s2);
                     break;
-                case 'brown':
-                case 'pink':
-                case 'white':
+                case 'brown': case 'pink': case 'white':
                     s1 = createSource(trackId); s1.connect(g1); s1.start();
                     s2 = createSource(trackId); f2 = audioCtx.createBiquadFilter();
                     f2.type = 'lowpass'; f2.frequency.value = 300;
@@ -435,13 +436,12 @@
             analyzer.getByteFrequencyData(data);
             bars.forEach((bar, i) => {
                 const val = data[i] || 0;
-                bar.style.height = `${Math.max(4, (val / 255) * 90)}%`;
-                bar.style.opacity = 0.1 + (val / 255);
+                bar.style.height = `${Math.max(4, (val / 255) * 100)}%`;
+                bar.style.opacity = 0.2 + (val / 255);
             });
             requestAnimationFrame(updateVisualizer);
         };
 
-        // UI Logic
         document.getElementById('playBtn').addEventListener('click', () => {
             if (!audioCtx) {
                 setupAudio();
@@ -491,7 +491,7 @@
         document.getElementById('extraToggle').addEventListener('click', function() {
             if (!audioCtx) setupAudio();
             extraLayerOn = !extraLayerOn;
-            this.classList.toggle('bg-indigo-600', extraLayerOn);
+            this.classList.toggle('bg-purple-600', extraLayerOn);
             document.getElementById('extraKnob').style.transform = extraLayerOn ? 'translateX(24px)' : 'translateX(0)';
             gExtra.gain.setTargetAtTime(extraLayerOn ? 1 : 0, audioCtx.currentTime, 0.5);
         });
